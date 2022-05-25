@@ -1,0 +1,76 @@
+#%RAML 1.0
+title: Clientidenforcement
+traits:
+  client-id-required:
+    headers:
+      client_id:
+        type: string
+      client_secret:
+        type: string
+/Product:
+  get:
+    is:
+      - client-id-required     
+    
+    description: fetching the data from the system
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include Responses/getresp.json
+             
+  post:
+    is:
+      - client-id-required
+
+    description: insert the data
+    body:
+      application/json:
+        example: !include Request/postrequest.json
+
+    responses:
+            200:
+              body:
+                application/json:
+                  example: !include Responses/postresponse.json
+                   
+  put:
+    is:
+          - client-id-required
+
+    description: update the data
+    body:
+      application/json:
+        example: !include Request/putrequest.json
+
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include Responses/putresponse.json
+
+            
+  delete:
+      is:
+        - client-id-required
+      description: delete the data
+      body:
+          application/json:
+            example: !include Request/Deleterequest.json
+
+      responses:
+        200:
+          body:
+            application/json:
+                example: !include Responses/deleteresponse.json
+                  
+
+                
+              
+          
+              
+                
+
+
+        
+        
